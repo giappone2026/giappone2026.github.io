@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 380" role="img" aria-labelledby="chibi-t">
+  <title id="chibi-t">Sergio e Davide in stile chibi, in kimono, tra le foglie d'acero</title>
+  <defs>
+    <path id="foglia" d="M-7.7,6.4 C-10.4,9.7 -18.9,8.4 -21.6,7.9 C-19.9,5.7 -14.2,-0.7 -20.0,1.0 C-21.6,1.9 -31.0,-5.5 -34.0,-8.5 C-30.0,-9.7 -18.2,-11.8 -16.8,-10.9 C-23.4,-15.2 -27.1,-30.1 -27.7,-35.5 C-22.6,-33.6 -9.1,-26.4 -6.5,-18.9 C-10.1,-29.3 -3.1,-44.9 0.0,-50.0 C3.1,-44.9 10.1,-29.3 6.5,-18.9 C9.1,-26.4 22.6,-33.6 27.7,-35.5 C27.1,-30.1 23.4,-15.2 16.8,-10.9 C18.2,-11.8 30.0,-9.7 34.0,-8.5 C31.0,-5.5 21.6,1.9 20.0,1.0 C14.2,-0.7 19.9,5.7 21.6,7.9 C18.9,8.4 10.4,9.7 7.7,6.4 Z"/>
+    <radialGradient id="sole" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#FBE7D3"/>
+      <stop offset="1" stop-color="#F3D2B6"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sfondo: sole d'autunno e foglie che cadono -->
+  <circle cx="200" cy="186" r="172" fill="url(#sole)"/>
+  <circle cx="200" cy="186" r="172" fill="none" stroke="#E7B994" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <use href="#foglia" fill="#D6A23A" transform="translate(66 92) rotate(-24) scale(.42)"/>
+  <use href="#foglia" fill="#B8432F" transform="translate(338 84) rotate(28) scale(.5)"/>
+  <use href="#foglia" fill="#D9792E" transform="translate(352 238) rotate(64) scale(.34)"/>
+  <use href="#foglia" fill="#B8432F" transform="translate(44 230) rotate(-58) scale(.3)"/>
+  <use href="#foglia" fill="#D9792E" transform="translate(206 30) rotate(12) scale(.28)"/>
+
+  <!-- Ombre a terra -->
+  <ellipse cx="148" cy="346" rx="58" ry="8" fill="#E2B693" opacity=".6"/>
+  <ellipse cx="258" cy="346" rx="60" ry="8" fill="#E2B693" opacity=".6"/>
+
+  <!-- ===== Personaggio di destra: capelli scuri, barba piena, kimono indaco ===== -->
+  <g id="destra">
+    <!-- piedi: tabi bianchi e zori -->
+    <ellipse cx="240" cy="343" rx="15" ry="5" fill="#5B3A2A"/>
+    <ellipse cx="276" cy="343" rx="15" ry="5" fill="#5B3A2A"/>
+    <ellipse cx="240" cy="338" rx="12" ry="7" fill="#FFFDF8"/>
+    <ellipse cx="276" cy="338" rx="12" ry="7" fill="#FFFDF8"/>
+    <!-- hakama grigia -->
+    <path d="M222 262 L294 262 L306 336 Q258 344 210 336 Z" fill="#6E6A68"/>
+    <path d="M246 268 L242 336 M270 268 L274 336" stroke="#5A5654" stroke-width="2"/>
+    <!-- kimono indaco (busto) -->
+    <path d="M218 200 Q258 186 298 200 L300 268 L216 268 Z" fill="#2F3A56"/>
+    <!-- colletto: bianco sotto, indaco scuro sopra, chiusura a "y" -->
+    <path d="M244 192 L258 230 L272 192" fill="none" stroke="#FFFDF8" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M238 194 L258 236 M276 194 L250 262" fill="none" stroke="#1F2840" stroke-width="7" stroke-linecap="round"/>
+    <!-- obi senape -->
+    <path d="M216 252 Q258 260 300 252 L300 270 Q258 278 216 270 Z" fill="#D6A23A"/>
+    <path d="M216 261 Q258 269 300 261" stroke="#B8862A" stroke-width="1.5" fill="none"/>
+    <!-- manica destra (lato osservatore) con regalo nel furoshiki -->
+    <path d="M296 204 Q318 218 322 258 L320 290 Q306 296 292 288 L290 232 Z" fill="#2F3A56"/>
+    <path d="M292 288 Q306 296 320 290" stroke="#1F2840" stroke-width="3" fill="none"/>
+    <path d="M300 258 Q296 240 306 238 Q312 246 312 258 Z M326 258 Q330 240 320 238 Q314 246 314 258 Z" fill="#D6A23A" stroke="#B8862A" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="290" y="258" width="46" height="36" rx="8" fill="#D6A23A"/>
+    <path d="M296 262 L313 276 L330 262" fill="none" stroke="#B8862A" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="313" cy="259" r="5" fill="#B8862A"/>
+    <use href="#foglia" fill="#FFFDF8" transform="translate(320 284) rotate(10) scale(.17)"/>
+    <use href="#foglia" fill="#FFFDF8" opacity=".7" transform="translate(301 286) rotate(-20) scale(.12)"/>
+    <circle cx="298" cy="284" r="9" fill="#EBC09C"/>
+    <!-- testa -->
+        <circle cx="203" cy="150" r="10" fill="#EBC09C"/>
+    <circle cx="313" cy="150" r="10" fill="#EBC09C"/>
+    <ellipse cx="258" cy="140" rx="57" ry="55" fill="#EBC09C"/>
+    <!-- capelli corti, ciuffo all'insù -->
+    <path d="M201 142 C196 96 222 76 254 76 C290 74 318 96 315 142 C312 126 306 114 296 106 C282 98 262 100 246 98 C232 100 214 108 208 124 Z" fill="#2B211C"/>
+    <path d="M226 92 C240 72 270 66 294 80 C278 78 262 82 250 90 Z" fill="#3D3029"/>
+    <!-- sopracciglia folte -->
+    <path d="M226 128 Q236 122 246 126" stroke="#2B211C" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M270 126 Q280 122 290 128" stroke="#2B211C" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <!-- barba piena -->
+    <path d="M203 140 C204 178 226 200 258 202 C290 200 312 178 313 140 C306 154 296 160 286 160 C276 158 268 156 258 158 C248 156 240 158 230 160 C220 160 210 154 203 140 Z" fill="#2B211C"/>
+    <!-- occhi -->
+    <ellipse cx="237" cy="143" rx="5.5" ry="7" fill="#2B211C"/>
+    <ellipse cx="279" cy="143" rx="5.5" ry="7" fill="#2B211C"/>
+    <circle cx="239" cy="140" r="2" fill="#fff"/>
+    <circle cx="281" cy="140" r="2" fill="#fff"/>
+    <!-- guance -->
+    <ellipse cx="224" cy="156" rx="8" ry="4.5" fill="#F08F7C" opacity=".45"/>
+    <ellipse cx="292" cy="156" rx="8" ry="4.5" fill="#F08F7C" opacity=".45"/>
+    <!-- sorriso -->
+    <path d="M248 172 Q258 182 268 172 Q258 176 248 172 Z" fill="#F6EDE4" stroke="#C7766A" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ===== Personaggio di sinistra: testa rasata, barba sale e pepe, kimono ruggine ===== -->
+  <g id="sinistra">
+    <ellipse cx="130" cy="343" rx="15" ry="5" fill="#5B3A2A"/>
+    <ellipse cx="166" cy="343" rx="15" ry="5" fill="#5B3A2A"/>
+    <ellipse cx="130" cy="338" rx="12" ry="7" fill="#FFFDF8"/>
+    <ellipse cx="166" cy="338" rx="12" ry="7" fill="#FFFDF8"/>
+    <!-- kimono verde matcha -->
+    <path d="M108 212 Q148 198 188 212 L198 336 Q148 344 98 336 Z" fill="#5A6B45"/>
+    <path d="M138 276 L132 338" stroke="#46553A" stroke-width="2.5"/>
+    <g fill="none" stroke="#7E8C68" stroke-width="2" stroke-linecap="round">
+      <path d="M112 300 l6 0 M115 297 l0 6"/><path d="M176 296 l6 0 M179 293 l0 6"/><path d="M150 316 l6 0 M153 313 l0 6"/><path d="M114 228 l6 0 M117 225 l0 6"/><path d="M118 324 l6 0 M121 321 l0 6"/><path d="M172 322 l6 0 M175 319 l0 6"/>
+    </g>
+    <path d="M134 204 L148 238 L162 204" fill="none" stroke="#FFFDF8" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M128 206 L148 244 M166 206 L140 270" fill="none" stroke="#3F4D33" stroke-width="7" stroke-linecap="round"/>
+    <!-- obi ruggine -->
+    <path d="M104 258 Q148 266 192 258 L193 278 Q148 286 103 278 Z" fill="#B8432F"/>
+    <path d="M104 268 Q148 276 192 268" stroke="#933222" stroke-width="1.5" fill="none"/>
+    <!-- manica sinistra (lato osservatore) con foglia in mano -->
+    <path d="M110 214 Q88 226 84 262 L86 290 Q100 296 112 288 L114 236 Z" fill="#5A6B45"/>
+    <path d="M86 290 Q100 296 112 288" stroke="#3F4D33" stroke-width="3" fill="none"/>
+    <path d="M97 276 Q93 262 88 254" stroke="#7A2E25" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <use href="#foglia" fill="#B8432F" transform="translate(86 246) rotate(-14) scale(.5)"/>
+    <circle cx="98" cy="280" r="9" fill="#F2C9A8"/>
+    <!-- testa -->
+    <circle cx="93" cy="162" r="10" fill="#F2C9A8"/>
+    <circle cx="203" cy="162" r="10" fill="#F2C9A8"/>
+    <ellipse cx="148" cy="152" rx="57" ry="55" fill="#F2C9A8"/>
+    <!-- riflesso sulla testa rasata -->
+    <path d="M114 118 Q124 104 140 100" stroke="#FFF6EC" stroke-width="7" stroke-linecap="round" fill="none" opacity=".75"/>
+    <!-- sopracciglia -->
+    <path d="M118 138 Q127 133 136 137" stroke="#7D756F" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M160 137 Q169 133 178 138" stroke="#7D756F" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- barba corta sale e pepe -->
+    <path d="M94 158 C96 192 118 210 148 212 C178 210 200 192 202 158 C196 170 188 176 178 176 C170 174 160 170 148 172 C136 170 126 174 118 176 C108 176 100 170 94 158 Z" fill="#9A938D"/>
+    <path d="M118 200 Q148 216 178 200 C170 208 160 212 148 212 C136 212 126 208 118 200 Z" fill="#7F7872"/>
+    <g stroke="#D9D4CE" stroke-width="2" stroke-linecap="round">
+      <path d="M108 184 l3 6"/><path d="M122 192 l2 6"/><path d="M174 192 l-2 6"/><path d="M188 184 l-3 6"/><path d="M100 172 l3 5"/><path d="M196 172 l-3 5"/>
+    </g>
+    <!-- occhi felici chiusi -->
+    <path d="M118 156 Q127 146 136 156" stroke="#3A2A22" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M160 156 Q169 146 178 156" stroke="#3A2A22" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- guance -->
+    <ellipse cx="112" cy="168" rx="8" ry="4.5" fill="#F08F7C" opacity=".5"/>
+    <ellipse cx="184" cy="168" rx="8" ry="4.5" fill="#F08F7C" opacity=".5"/>
+    <!-- sorriso aperto -->
+    <path d="M134 180 Q148 200 162 180 Z" fill="#7A2E25" stroke="#7A2E25" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M136 181 L160 181 L158 185 Q148 187 138 185 Z" fill="#FFFDF8"/>
+  </g>
+
+  <!-- Braccio del personaggio di destra sulla spalla dell'altro -->
+  <path d="M222 206 Q204 214 190 224 L194 238 Q210 230 226 226 Z" fill="#2F3A56"/>
+  <circle cx="188" cy="226" r="9" fill="#EBC09C"/>
+</svg>
