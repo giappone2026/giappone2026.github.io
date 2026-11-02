@@ -150,7 +150,7 @@
     var anelli = [
       ['bucket', 'Bucket list', contaLista(lista('esperienze'))],
       ['bucket', 'Foto con la R7', contaLista(lista('foto'))],
-      ['bucket', 'Pokémon e Nintendo', contaLista(lista('nerd'))],
+      ['bucket', 'Negozi nerd', contaLista(lista('nerd'))],
       ['mangiare', 'Assaggi', { fatte: ciboFatto, totali: D.cibo.length }],
       ['luoghi', 'Luoghi visti', { fatte: luoghiVisti, totali: D.luoghi.length }]
     ];
