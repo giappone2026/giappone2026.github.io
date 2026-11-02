@@ -4,6 +4,7 @@
 
   var K = { chiave: 'g26:chiave', spunte: 'g26:spunte', musica: 'g26:musica', volume: 'g26:volume', foglie: 'g26:foglie', tema: 'g26:tema' };
   var FOGLIA = 'M-7.7,6.4 C-10.4,9.7 -18.9,8.4 -21.6,7.9 C-19.9,5.7 -14.2,-0.7 -20.0,1.0 C-21.6,1.9 -31.0,-5.5 -34.0,-8.5 C-30.0,-9.7 -18.2,-11.8 -16.8,-10.9 C-23.4,-15.2 -27.1,-30.1 -27.7,-35.5 C-22.6,-33.6 -9.1,-26.4 -6.5,-18.9 C-10.1,-29.3 -3.1,-44.9 0.0,-50.0 C3.1,-44.9 10.1,-29.3 6.5,-18.9 C9.1,-26.4 22.6,-33.6 27.7,-35.5 C27.1,-30.1 23.4,-15.2 16.8,-10.9 C18.2,-11.8 30.0,-9.7 34.0,-8.5 C31.0,-5.5 21.6,1.9 20.0,1.0 C14.2,-0.7 19.9,5.7 21.6,7.9 C18.9,8.4 10.4,9.7 7.7,6.4 Z';
+  var GINKGO = 'M0,6 C-12,4 -25,-6 -28,-20 C-19,-28 -8,-28 -2,-22 L0,-13 L2,-22 C8,-28 19,-28 28,-20 C25,-6 12,4 0,6 Z';
   var GIORNI_SETT = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
   var GRUPPI_LUOGHI = [['tokyo', 'Tokyo', '東京'], ['gite', 'Gite', '遠足'], ['kyoto', 'Kyoto', '京都']];
 
@@ -66,6 +67,16 @@
   function voce(id, predefinito, titolo, dettagli, extra) {
     return '<li class="' + (fatto(id, predefinito) ? 'fatto' : '') + '"><label class="voce">' + spunta(id, predefinito, titolo) +
       '<span><span class="t">' + esc(titolo) + (extra || '') + '</span>' + (dettagli || []).map(function (d) { return '<span class="d">' + d + '</span>'; }).join('') + '</span></label></li>';
+  }
+  var PER = { entrambi: ['Tutti e due', 'per-entrambi'], sergio: ['Sergio', 'per-sergio'], davide: ['Vegano', 'per-davide'] };
+  function extraCibo(f) {
+    var p = PER[f.per] || PER.entrambi;
+    return '<span class="jp">' + esc(f.jp) + '</span> <span class="chip-per ' + p[1] + '">' + p[0] + '</span>';
+  }
+  function dettagliCibo(f, conGiorno) {
+    var d = [esc(f.desc), '<b>Dove:</b> ' + esc(f.dove) + (conGiorno && f.giorno ? ' · <a href="#giorno-' + f.giorno + '">' + f.giorno + ' novembre</a>' : '')];
+    if (f.nota) d.push('<span class="nota-cibo">' + esc(f.nota) + '</span>');
+    return d;
   }
   function maiuscola(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
@@ -208,7 +219,7 @@
 
     if (g.mangiare && g.mangiare.length) html += '<section class="card"><div class="card-capo"><h2>Da assaggiare</h2><span class="jp">食</span></div><ul class="voci cibo">' + g.mangiare.map(function (id) {
       var f = ciboPerId(id); if (!f) return '';
-      return voce('cibo-' + f.id, false, f.nome, [esc(f.desc) + ' · ' + esc(f.dove)], '<span class="jp">' + esc(f.jp) + '</span>');
+      return voce('cibo-' + f.id, false, f.nome, dettagliCibo(f, false), extraCibo(f));
     }).join('') + '</ul></section>';
 
     if (g.note && g.note.length) html += '<section class="card"><div class="card-capo"><h2>Da ricordare</h2><span class="jp">注意</span></div><ul class="puntini">' + g.note.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></section>';
@@ -283,15 +294,16 @@
   }
   function vistaMangiare() {
     var fatti = D.cibo.filter(function (c) { return fatto('cibo-' + c.id); }).length;
-    var html = capo('Liste', '食', 'Da mangiare', 'Piatti, dolci e cibo di strada lungo il viaggio, con dove trovarli.');
+    var html = capo('Liste', '食', 'Da mangiare', 'Niente pesce: piatti vegani per Davide, i locali famosi per Sergio e tante cose buone per tutti e due.');
     html += segmenti(SEG_LISTE, 'mangiare');
+    html += '<div class="card legenda"><span class="chip-per per-davide">Vegano</span> pensato per Davide <span class="chip-per per-entrambi">Tutti e due</span> va bene per entrambi <span class="chip-per per-sergio">Sergio</span> non vegano<p class="muto piccolo-testo" style="margin:8px 0 0">Il dashi, brodo di pesce, si nasconde in molti piatti: le frasi per chiederlo sono nella pagina Frasi.</p></div>';
     html += '<div class="card">' + barretta(fatti, D.cibo.length) + '</div>';
     var ordine = [];
     D.cibo.forEach(function (c) { if (ordine.indexOf(c.citta) < 0) ordine.push(c.citta); });
     ordine.forEach(function (citta) {
       var voci = D.cibo.filter(function (c) { return c.citta === citta; });
       html += '<section class="card"><div class="card-capo"><h2>' + esc(citta) + '</h2></div><ul class="voci cibo">' + voci.map(function (f) {
-        return voce('cibo-' + f.id, false, f.nome, [esc(f.desc), '<b>Dove:</b> ' + esc(f.dove) + (f.giorno ? ' · <a href="#giorno-' + f.giorno + '">' + f.giorno + ' novembre</a>' : '')], '<span class="jp">' + esc(f.jp) + '</span>');
+        return voce('cibo-' + f.id, false, f.nome, dettagliCibo(f, true), extraCibo(f));
       }).join('') + '</ul></section>';
     });
     return html;
@@ -488,18 +500,21 @@
   }
   function foglie() {
     if (ls.get(K.foglie) === 'off') document.body.classList.add('senza-foglie');
-    var box = document.querySelector('.foglie'), colori = ['#B8432F', '#D9792E', '#D6A23A', '#C4562F'];
-    var n = window.innerWidth < 600 ? 6 : 10;
+    var box = document.querySelector('.foglie'), colori = ['#B8432F', '#D9792E', '#C4562F', '#A8392A', '#D9792E'];
+    var n = window.innerWidth < 600 ? 16 : 26;
     for (var i = 0; i < n; i++) {
       var el = document.createElement('div'), d = 14 + Math.random() * 12;
       el.className = 'foglia';
       el.style.left = (Math.random() * 100) + '%';
-      el.style.setProperty('--s', (14 + Math.random() * 14).toFixed(0) + 'px');
-      el.style.setProperty('--o', (0.22 + Math.random() * 0.28).toFixed(2));
+      el.style.setProperty('--s', (13 + Math.random() * 17).toFixed(0) + 'px');
+      el.style.setProperty('--o', (0.3 + Math.random() * 0.35).toFixed(2));
       el.style.setProperty('--d', d.toFixed(1) + 's');
       el.style.setProperty('--r', (-Math.random() * d).toFixed(1) + 's');
       el.style.setProperty('--x', ((Math.random() - 0.5) * 220).toFixed(0) + 'px');
-      el.innerHTML = '<svg viewBox="-36 -52 72 64"><path d="' + FOGLIA + '" fill="' + colori[i % colori.length] + '"/></svg>';
+      // Una foglia su tre è di ginkgo, gialla
+      el.innerHTML = i % 3 === 2
+        ? '<svg viewBox="-32 -30 64 60"><path d="' + GINKGO + '" fill="#D6A23A"/><path d="M0,6 L1,26" stroke="#B8862A" stroke-width="2.5" stroke-linecap="round"/></svg>'
+        : '<svg viewBox="-36 -52 72 64"><path d="' + FOGLIA + '" fill="' + colori[i % colori.length] + '"/></svg>';
       box.appendChild(el);
     }
   }

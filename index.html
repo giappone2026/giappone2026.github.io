@@ -35,6 +35,14 @@
   --fuoco: rgba(184, 67, 47, 0.18);
   --ombra: 0 1px 2px rgba(60, 40, 25, .05), 0 6px 18px rgba(60, 40, 25, .06);
   --vetro: rgba(246, 241, 231, .88);
+  --carta-trasp: rgba(255, 253, 248, .86);
+  --fuji-monte: #C5CEDA;
+  --fuji-ombra: #B3BECD;
+  --fuji-neve: #FFFFFF;
+  --fuji-sole: #F3CDB0;
+  --fuji-colle1: #E6D6C2;
+  --fuji-colle2: #DCC7AE;
+  --fuji-alberi: #C9583F;
   --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
   --sans: "Zen Kaku Gothic New", system-ui, -apple-system, "Segoe UI", sans-serif;
   --barra: 64px;
@@ -45,6 +53,7 @@
     --washi: #191513; --carta: #241E1B; --sumi: #F1E8DC; --cenere: #B3A595; --linea: #3A302B; --linea-forte: #4C403A;
     --momiji: #E46C51; --momiji-scuro: #F08A70; --momiji-tenue: #3A231D; --ginkgo: #E2B457; --matcha: #A3B784; --indaco: #9AABD3;
     --fuoco: rgba(228, 108, 81, .25); --ombra: 0 1px 2px rgba(0, 0, 0, .3); --vetro: rgba(25, 21, 19, .9);
+    --carta-trasp: rgba(36, 30, 27, .86); --fuji-monte: #313A4E; --fuji-ombra: #283043; --fuji-neve: #C9D2DE; --fuji-sole: #4A2A22; --fuji-colle1: #2A231F; --fuji-colle2: #221C19; --fuji-alberi: #8E3B2C;
     color-scheme: dark;
   }
 }
@@ -52,6 +61,7 @@
   --washi: #191513; --carta: #241E1B; --sumi: #F1E8DC; --cenere: #B3A595; --linea: #3A302B; --linea-forte: #4C403A;
   --momiji: #E46C51; --momiji-scuro: #F08A70; --momiji-tenue: #3A231D; --ginkgo: #E2B457; --matcha: #A3B784; --indaco: #9AABD3;
   --fuoco: rgba(228, 108, 81, .25); --ombra: 0 1px 2px rgba(0, 0, 0, .3); --vetro: rgba(25, 21, 19, .9);
+  --carta-trasp: rgba(36, 30, 27, .86); --fuji-monte: #313A4E; --fuji-ombra: #283043; --fuji-neve: #C9D2DE; --fuji-sole: #4A2A22; --fuji-colle1: #2A231F; --fuji-colle2: #221C19; --fuji-alberi: #8E3B2C;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -79,8 +89,12 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0; text-wrap: 
 @keyframes ondeggia { from { transform: rotate(-35deg) translateX(-12px); } to { transform: rotate(40deg) translateX(12px); } }
 body.senza-foglie .foglie { display: none; }
 
+/* Monte Fuji sullo sfondo */
+.fuji { position: fixed; left: 0; right: 0; bottom: 0; height: clamp(200px, 40vh, 380px); z-index: 0; pointer-events: none; }
+.fuji svg { width: 100%; height: 100%; display: block; }
+
 /* Blocco con password */
-.blocco { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px 16px; background: var(--washi); overflow-y: auto; }
+.blocco { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px 16px; background: transparent; overflow-y: auto; }
 .blocco[hidden] { display: none; }
 .blocco-card { width: min(380px, 100%); text-align: center; display: grid; gap: 14px; position: relative; z-index: 1; }
 .blocco-ritratto { width: 190px; margin: 0 auto; }
@@ -132,7 +146,7 @@ main.app { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; pad
 .capo p { margin: 0; color: var(--cenere); max-width: 60ch; }
 .indietro { font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
 
-.card { background: var(--carta); border: 1px solid var(--linea); border-radius: 18px; padding: 18px; box-shadow: var(--ombra); }
+.card { background: var(--carta-trasp); border: 1px solid var(--linea); border-radius: 18px; padding: 18px; box-shadow: var(--ombra); }
 .card h2 { font-size: 21px; font-weight: 700; }
 .card > p { margin: 0; }
 .card-capo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
@@ -253,6 +267,14 @@ main.app { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; pad
 
 /* Cibo */
 .cibo li .jp { font-family: var(--serif); color: var(--momiji); font-size: 14px; margin-left: 6px; }
+.chip-per { display: inline-block; vertical-align: 2px; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font: 700 11px/1.6 var(--sans); letter-spacing: .02em; white-space: nowrap; }
+.per-davide { background: var(--matcha); color: #FFFDF8; }
+.per-entrambi { background: color-mix(in srgb, var(--matcha) 18%, transparent); color: var(--matcha); }
+.per-sergio { background: var(--momiji-tenue); color: var(--momiji); }
+.legenda { font-size: 13.5px; line-height: 2; }
+.legenda .chip-per { margin: 0 4px 0 0; }
+.legenda .chip-per:not(:first-child) { margin-left: 10px; }
+.nota-cibo { display: block; margin-top: 2px; color: var(--ginkgo); }
 
 /* Info */
 .prenotazioni { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -341,6 +363,24 @@ textarea.codice { width: 100%; min-height: 90px; border-radius: 12px; border: 1.
 </style>
 </head>
 <body>
+<div class="fuji" aria-hidden="true">
+  <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="nebbia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--washi)" stop-opacity="0"/><stop offset="1" stop-color="var(--washi)" stop-opacity=".85"/></linearGradient>
+    </defs>
+    <circle cx="830" cy="150" r="74" fill="var(--fuji-sole)" opacity=".75"/>
+    <path d="M30,420 C210,382 372,334 468,252 C520,206 548,152 566,110 L578,98 L600,103 L622,96 L634,110 C652,152 680,206 732,252 C828,334 990,382 1170,420 Z" fill="var(--fuji-monte)"/>
+    <path d="M600,103 L622,96 L634,110 C652,152 680,206 732,252 C828,334 990,382 1170,420 L760,420 C700,330 650,240 616,150 Z" fill="var(--fuji-ombra)" opacity=".7"/>
+    <path d="M566,110 L578,98 L600,103 L622,96 L634,110 C644,130 653,148 665,168 L652,161 L642,178 L629,159 L617,180 L604,161 L592,182 L580,160 L568,177 L557,160 L545,170 C552,148 559,128 566,110 Z" fill="var(--fuji-neve)"/>
+    <rect x="0" y="250" width="1200" height="120" fill="url(#nebbia)"/>
+    <path d="M0,420 L0,334 C150,304 280,322 400,350 C520,378 640,362 760,342 C900,318 1060,330 1200,302 L1200,420 Z" fill="var(--fuji-colle1)"/>
+    <g fill="var(--fuji-alberi)" opacity=".55">
+      <circle cx="96" cy="318" r="18"/><circle cx="122" cy="308" r="22"/><circle cx="150" cy="320" r="15"/>
+      <circle cx="1018" cy="318" r="17"/><circle cx="1046" cy="306" r="23"/><circle cx="1076" cy="314" r="16"/><circle cx="1104" cy="304" r="14"/>
+    </g>
+    <path d="M0,420 L0,372 C200,352 360,392 540,396 C720,400 880,362 1200,382 L1200,420 Z" fill="var(--fuji-colle2)"/>
+  </svg>
+</div>
 <div class="foglie" aria-hidden="true"></div>
 
 <section class="blocco" id="blocco" aria-labelledby="blocco-titolo">
