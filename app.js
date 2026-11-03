@@ -135,10 +135,17 @@
       var dom = giornoPerN(g.n + 1);
       if (dom) html += '<a class="card giorno-card c-' + esc(dom.citta) + '" href="#giorno-' + dom.n + '"><div class="data"><b>' + dom.n + '</b><span>domani</span></div><div><h3>' + esc(dom.titolo) + '</h3><p>' + esc(dom.riassunto) + '</p></div><span class="kanji-sfondo">' + esc(dom.kanji) + '</span></a>';
     } else if (prima > 0) {
-      var l = lista('prima'), c = contaLista(l);
-      var aperte = l.voci.filter(function (v) { return !fatto(idVoce(l, v), v.fatto); }).slice(0, 5);
+      // Tutte le liste pre-partenza insieme: progresso totale e le prime voci ancora aperte
+      var pre = D.liste.filter(function (x) { return x.prePartenza || x.id === 'prima'; });
+      var c = { fatte: 0, totali: 0 }, aperte = [];
+      pre.forEach(function (l) {
+        var cl = contaLista(l);
+        c.fatte += cl.fatte; c.totali += cl.totali;
+        l.voci.forEach(function (v) { if (!fatto(idVoce(l, v), v.fatto)) aperte.push([l, v]); });
+      });
       html += '<section class="card"><div class="card-capo"><h2>Prima di partire</h2><span class="jp">準備</span></div>' + barretta(c.fatte, c.totali) +
-        (aperte.length ? '<ul class="voci" style="margin-top:8px">' + aperte.map(function (v) { return voce(idVoce(l, v), v.fatto, v.testo, v.dettaglio ? [esc(v.dettaglio)] : []); }).join('') + '</ul>' : '<p class="muto" style="margin-top:8px">Tutto pronto. Si parte!</p>') +
+        (aperte.length ? '<ul class="voci" style="margin-top:8px">' + aperte.slice(0, 6).map(function (x) { return voce(idVoce(x[0], x[1]), x[1].fatto, x[1].testo, x[1].dettaglio ? [esc(x[1].dettaglio)] : []); }).join('') + '</ul>' +
+          (aperte.length > 6 ? '<p class="muto piccolo-testo" style="margin-top:6px">E altre ' + (aperte.length - 6) + ' cose nella pagina Liste.</p>' : '') : '<p class="muto" style="margin-top:8px">Tutto pronto. Si parte!</p>') +
         '<p style="margin-top:12px"><a class="btn piccolo chiaro" href="#liste">Tutta la checklist</a></p></section>';
       var primo = D.giorni[0];
       html += '<a class="card giorno-card c-' + esc(primo.citta) + '" href="#giorno-' + primo.n + '"><div class="data"><b>' + primo.n + '</b><span>nov</span></div><div><h3>' + esc(primo.titolo) + '</h3><p>' + esc(primo.riassunto) + '</p></div><span class="kanji-sfondo">' + esc(primo.kanji) + '</span></a>';

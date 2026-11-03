@@ -1,6 +1,6 @@
 // Copia locale del sito per usarlo anche senza rete (metro, aereo).
 // Risponde subito dalla cache e intanto aggiorna la copia in background.
-var VERSIONE = 'g26-v2';
+var VERSIONE = 'g26-v3';
 var FILE = ['./', 'index.html', 'app.js', 'musica.js', 'dati.enc.json', 'chibi.svg', 'icon.svg', 'manifest.webmanifest', 'apple-touch-icon.png', 'icona-192.png', 'icona-512.png'];
 
 self.addEventListener('install', function (e) {
