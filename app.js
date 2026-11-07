@@ -108,7 +108,7 @@
   function giornoPerN(n) { for (var i = 0; i < D.giorni.length; i++) if (D.giorni[i].n === +n) return D.giorni[i]; return null; }
   function giornoDiOggi() { var o = oggiJST(); for (var i = 0; i < D.giorni.length; i++) if (D.giorni[i].data === o) return D.giorni[i]; return null; }
   function dataLunga(g) { return settimana(g.data) + ' ' + g.n + ' novembre'; }
-  function contaProgramma(g) { var f = 0; g.programma.forEach(function (p, i) { if (fatto('g' + g.n + '-p' + i)) f++; }); return { fatte: f, totali: g.programma.length }; }
+  function contaProgramma(g) { var f = 0; g.programma.forEach(function (p, i) { if (fatto('g' + g.n + '-p' + i, p.fatto)) f++; }); return { fatte: f, totali: g.programma.length }; }
   function lista(id) { for (var i = 0; i < D.liste.length; i++) if (D.liste[i].id === id) return D.liste[i]; return null; }
 
   // ── Pagina Oggi ──
@@ -212,7 +212,7 @@
     html += '<section class="card"><div class="card-capo"><h2>Il programma</h2><span class="jp">予定</span></div>' + barretta(c.fatte, c.totali) +
       '<ol class="linea-tempo" style="margin-top:10px">' + g.programma.map(function (p, i) {
         var id = 'g' + g.n + '-p' + i, l = p.luogo ? luogoPerId(p.luogo) : null;
-        return '<li class="' + (fatto(id) ? 'fatto' : '') + '"' + (i === corrente ? ' style="background:var(--momiji-tenue);border-radius:12px"' : '') + '>' + spunta(id, false, p.titolo) +
+        return '<li class="' + (fatto(id, p.fatto) ? 'fatto' : '') + '"' + (i === corrente ? ' style="background:var(--momiji-tenue);border-radius:12px"' : '') + '>' + spunta(id, p.fatto, p.titolo) +
           '<div><span class="ora">' + esc(p.ora) + (i === corrente ? ' · adesso' : '') + '</span><h3>' + esc(p.titolo) + '</h3>' + (p.testo ? '<p>' + esc(p.testo) + '</p>' : '') +
           (l ? '<a class="vai" href="#luogo-' + l.id + '">Scheda: ' + esc(l.nome) + ' →</a>' : '') + '</div></li>';
       }).join('') + '</ol></section>';
